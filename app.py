@@ -3,7 +3,7 @@ import streamlit as st
 def jogo_namoro():
     pontos = 0
 
-    st.title("Jogo do Namoro")
+    st.title("O jogo")
     st.write("Olá! Vamos jogar um pequeno jogo? Responda as perguntas a seguir:")
 
     resposta1 = st.text_input("1. Qual é a cor do céu durante o dia?")
