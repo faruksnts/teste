@@ -33,6 +33,6 @@ def jogo_namoro():
             st.write("Você quer sair comigo?")
         else:
             st.error(f"Você acertou {pontos} de 3 perguntas. Mas a pergunta mais importante ainda está por vir:")
-            st.write("Você quer sair e mudar de opnião comigo?")
+            st.write("Você quer sair comigo e mudar de opinião?")
 
 jogo_namoro()
