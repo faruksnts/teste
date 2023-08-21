@@ -9,7 +9,7 @@ def pergunta_resposta(pergunta, opcoes, resposta_correta):
         return 0
 
 def jogo_namoro():
-    st.title("O Jogo")
+    st.title(" O Jogo ")
     st.write("Responda às seguintes perguntas para desbloquear uma pergunta especial:")
 
     pontos = 0
@@ -23,6 +23,9 @@ def jogo_namoro():
         pontos += pergunta_resposta(pergunta, opcoes, resposta_correta)
 
     if st.button("Verificar resultado"):
+        st.session_state['verificado'] = True
+
+    if st.session_state.get('verificado', False):
         if pontos >= objetivo:
             st.write(f"Parabéns! Você alcançou {pontos} pontos.")
             st.write("Aqui está a pergunta especial:")
@@ -30,9 +33,9 @@ def jogo_namoro():
             resposta_final = st.text_input("Sua resposta:")
             if st.button("Enviar resposta"):
                 if resposta_final.lower() in ['sim', 'claro', 'com certeza']:
-                    st.write("Estou tão feliz! Vamos fazer disso uma linda história.")
+                    st.write("vlw :)")
                 else:
-                    st.write("Tudo bem, respeito a sua decisão.")
+                    st.write("Tudo bem, respeito a sua decisão -'- ")
         else:
             st.write(f"Infelizmente, você não alcançou os {objetivo} pontos necessários. Tente novamente.")
 
