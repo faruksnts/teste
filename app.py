@@ -1,38 +1,39 @@
 import streamlit as st
 
+def pergunta_resposta(pergunta, opcoes, resposta_correta):
+    st.write(pergunta)
+    resposta = st.radio("", opcoes)
+    if resposta == resposta_correta:
+        return 1
+    else:
+        return 0
+
 def jogo_namoro():
+    st.title(" O Jogo")
+    st.write("Responda às seguintes perguntas para desbloquear uma pergunta especial:")
+
     pontos = 0
+    objetivo = 3
+    perguntas = [("Se você fosse um legume, qual seria?", ["Batata", "Abobrinha", "Pimentão", "Abóbora irresistível"], "Abóbora irresistível"),
+                 ("Se eu fosse um super-herói e você estivesse em perigo, qual seria o meu superpoder?", ["Voar", "Invisibilidade", "Fazer você se apaixonar por mim", "Superforça"], "Fazer você se apaixonar por mim"),
+                 ("Qual é o meu truque de mágica favorito?", ["Fazer objetos desaparecerem", "Ler mentes", "Fazer você sorrir", "Levitação"], "Fazer você sorrir"),
+                 ("Qual é o meu tipo de café favorito?", ["Espresso", "Cappuccino", "Latte", "O que tem você nele"], "O que tem você nele")]
 
-    st.title("O jogo")
-    st.write("Olá! Vamos jogar um pequeno jogo? Responda as perguntas a seguir:")
+    for pergunta, opcoes, resposta_correta in perguntas:
+        pontos += pergunta_resposta(pergunta, opcoes, resposta_correta)
 
-    resposta1 = st.text_input("1. Qual é a cor do céu durante o dia?")
-    if resposta1.lower() == "azul":
-        pontos += 1
-        st.success("Correto!")
-    elif resposta1:
-        st.error("Errado! A resposta correta é 'azul'.")
-
-    resposta2 = st.text_input("2. Quantas patas tem um cachorro?")
-    if resposta2 == "4":
-        pontos += 1
-        st.success("Correto!")
-    elif resposta2:
-        st.error("Errado! A resposta correta é '4'.")
-
-    resposta3 = st.text_input("3. quem é melhor selenators ou beliebers ?")
-    if resposta3.lower() == "selenators":
-        pontos += 1
-        st.success("Correto!")
-    elif resposta3:
-        st.error("Errado! A resposta correta é 'selenators'.")
-
-    if resposta1 and resposta2 and resposta3:
-        if pontos == 3:
-            st.success(f"Parabéns, você acertou todas as perguntas! Agora, a pergunta mais importante:")
-            st.write("Você quer sair comigo?")
+    if pontos >= objetivo:
+        st.write(f"Parabéns! Você alcançou {pontos} pontos.")
+        st.write("Aqui está a pergunta especial:")
+        st.write("Você quer sair comigo?")
+        resposta_final = st.text_input("Sua resposta:")
+        if resposta_final.lower() in ['sim', 'claro', 'com certeza']:
+            st.write("vlw :)")
         else:
-            st.error(f"Você acertou {pontos} de 3 perguntas. Mas a pergunta mais importante ainda está por vir:")
-            st.write("Você quer sair comigo e mudar de opinião?")
+            st.write(" Tudo bem, respeito a sua decisão -'- ")
+    else:
+        st.write(f"Infelizmente, você não alcançou os {objetivo} pontos necessários. Tente novamente.")
 
-jogo_namoro()
+if __name__ == '__main__':
+    jogo_namoro()
+
