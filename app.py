@@ -1,18 +1,29 @@
 import streamlit as st
+import random
 
 def main():
-    st.title("Oi, amor!")
-    st.write("Aceita ser minha pessoa favorita para sempre?")
-    
-    resposta = st.button("Sim")
-    if resposta:
-        st.write("Sabia que você aceitaria! 😊")
-        # Altere o URL abaixo para o endereço da música que você deseja compartilhar.
-        url = 'https://youtu.be/238I_qBI4Rs?si=8PD797DQ_sA5U8i7'
-        st.markdown(f"[estou com sdds, clique aqui!]({url})")
+    st.title("Pedra, Papel e Tesoura!")
+    st.write("Vamos jogar!")
+
+    opcoes = ["Pedra", "Papel", "Tesoura"]
+    selecao = st.selectbox("Escolha sua jogada:", opcoes)
+
+    if st.button("Jogar!"):
+        jogada_computador = random.choice(opcoes)
+        st.write(f"Computador escolheu: {jogada_computador}")
+
+        if selecao == jogada_computador:
+            st.write("Empate!")
+        elif (selecao == "Pedra" and jogada_computador == "Tesoura") or \
+             (selecao == "Papel" and jogada_computador == "Pedra") or \
+             (selecao == "Tesoura" and jogada_computador == "Papel"):
+            st.write("Você ganhou!")
+        else:
+            st.write("Você perdeu!")
 
 if __name__ == "__main__":
     main()
+
 
 
 
